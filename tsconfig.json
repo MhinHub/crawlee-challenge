@@ -7,9 +7,13 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "baseUrl": ".", // important for paths
+    "baseUrl": ".",
     "paths": {
       "@shared/*": ["shared/*"]
-    }
-  }
+    },
+    "outDir": "dist",
+    "rootDir": "."
+  },
+  "include": ["challenges/**/*", "shared/**/*"],
+  "exclude": ["node_modules", "dist", "storage"]
 }

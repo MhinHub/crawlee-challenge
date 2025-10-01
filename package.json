@@ -5,7 +5,7 @@
     "scripts": {
         "start:ecommerce": "bun run challenges/ecommerce/src/index.ts",
         "start:pagination": "bun run challenges/pagination/src/index.ts",
-        "build": "tsc -b challenges/*"
+        "build": "tsc"
     },
     "dependencies": {
         "crawlee": "^3.15.1",

@@ -36,31 +36,20 @@ Each challenge demonstrates different techniques for extracting data from websit
 ## 📁 Project Structure
 
 ```
-crawlee-scrapingcourse/
-├── challenges/                 # scraping 
-│   ├── ecommerce/             # E-commerce 
-│   │   └── src/
+crawlee-challenge/
+├── challenges/                 # Challenge implementations
+│   ├── ecommerce/             # E-commerce scraping challenge
 │   │       └── index.ts
-│   └── pagination/            # Pagination 
-│       └── src/
+│   └── pagination/            # Pagination challenge
 │           └── index.ts
 ├── shared/                    # Reusable components
-│   ├── baseCrawler.ts         # Generic crawler 
-│   └── detailProductHandler.ts # Product detail 
-├── package.json              # Project 
+│   ├── baseCrawler.ts         # Generic crawler base class
+│   └── detailProductHandler.ts # Product detail page handler
+├── package.json              # Project dependencies and scripts
 ├── bunfig.toml               # Bun configuration
-├── tsconfig.base.json        # Base TypeScript 
-└── README.md                
+├── tsconfig.json             # TypeScript configuration
+└── README.md                 
 ```
-
-## 🎯 Available Challenges
-
-Currently implemented challenges:
-
-- **Ecommerce Challenge** - Scrapes product information from an e-commerce website including titles, prices, images, SKUs, and descriptions.
-- **Pagination Challenge** - Handles automated pagination to scrape multiple pages of content.
-
-More challenges will be added over time covering additional scenarios such as login flows, JavaScript rendering, and anti-bot challenges.
 
 ## ⚙️ Setup
 
@@ -70,10 +59,10 @@ More challenges will be added over time covering additional scenarios such as lo
 2. **Installation**
    ```bash
    # Clone the repository
-   git clone <repository-url>
+   git clone https://github.com/MhinHub/crawlee-challenge
    
    # Navigate to project directory
-   cd crawlee-scrapingcourse
+   cd crawlee-challenge
    
    # Install dependencies
    bun install
