@@ -18,12 +18,14 @@ async function main() {
         const sizes = await page.locator('#size option').evaluateAll(options => options.map(o => o.getAttribute('value')).filter(v => v && v !== ''));
         const colors = await page.locator('#color option').evaluateAll(options => options.map(o => o.getAttribute('value')).filter(v => v && v !== ''));
 
-        const descriptionHtml = await page.locator('#tab-description').innerHTML();
-        const description = descriptionHtml.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '').trim();
+        const paragraphs = await page.locator('#tab-description p').evaluateAll(
+            nodes => nodes.map(n => n.textContent?.trim()).filter(Boolean)
+        );
+        const description = paragraphs.join('\n\n');
 
         await Dataset.pushData({ url: request.url, sku, title, category, price, images, sizes, colors, description });
 
-        // await Dataset.exportToJSON('contoh')
+        await Dataset.exportToCSV('example')
 
     });
 
@@ -45,10 +47,10 @@ async function main() {
     const { run } = createBaseCrawler({
         requestHandler: router,
         startUrls: ['https://www.scrapingcourse.com/ecommerce'],
-        maxRequests: 100,
+        maxRequests: 100
     });
 
-    await run("ECOMMERCE")
+    await run('ECOMMERCE');
 }
 
 main();
