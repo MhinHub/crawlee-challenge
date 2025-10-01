@@ -1,4 +1,5 @@
-import { PlaywrightCrawler, Dataset, RequestQueue } from 'crawlee';
+import { detailHandler } from '@shared/detailProductHandler';
+import { PlaywrightCrawler, Dataset, RequestQueue, PlaywrightCrawlingContext } from 'crawlee';
 
 async function main() {
     const requestQueue = await RequestQueue.open();
@@ -9,12 +10,11 @@ async function main() {
     });
 
     const crawler = new PlaywrightCrawler({
-        maxRequestsPerCrawl: 50,
         requestQueue,
-        requestHandler: async ({ page, request: { url, label }, enqueueLinks, log }) => {
+        requestHandler: async ({ page, request, enqueueLinks, log }) => {
 
-            if (label === 'PAGINATION') {
-                log.info(`Scraping pagination page: ${url}`);
+            if (request.label === 'PAGINATION') {
+                log.info(`Scraping pagination page: ${request.url}`);
 
                 await page.waitForSelector('a.next-page', { state: 'visible' }).catch(() => {
                     log.info('No next-page link found, might be the last page');
@@ -31,50 +31,15 @@ async function main() {
                     label: 'DETAIL_PAGE',
                     strategy: 'all'
                 });
-            } else if (label === 'DETAIL_PAGE') {
-                log.info(`Scraping detail page: ${url}`);
+            } else if (request.label === 'DETAIL_PAGE') {
+                log.info(`Scraping detail page: ${request.url}`);
 
-                // Wait for content to load
                 await page.waitForSelector('h1.product_title', { state: 'visible' }).catch(() => {
-                    log.warning(`No product title found on ${url}`);
+                    log.warning(`No product title found on ${request.url}`);
                     return;
                 });
 
-                const sku = await page.locator('span.sku').textContent();
-                const title = await page.locator('h1.product_title').textContent();
-                const category = await page.locator('.posted_in a').textContent();
-
-                const priceText = await page.locator('p.price span.product-price bdi').textContent();
-                const price = Number(priceText?.replace(/[^0-9.]/g, ''));
-
-                const images = await page.locator('.woocommerce-product-gallery__wrapper a').evaluateAll(imgs =>
-                    imgs.map(img => img.getAttribute('href')).filter(Boolean)
-                );
-
-                const sizes = await page.locator('#size option').evaluateAll(options =>
-                    options.map(o => o.getAttribute('value')).filter(v => v && v !== '')
-                );
-
-                const colors = await page.locator('#color option').evaluateAll(options =>
-                    options.map(o => o.getAttribute('value')).filter(v => v && v !== '')
-                );
-
-                const paragraphs = await page.locator('#tab-description p').evaluateAll(
-                    nodes => nodes.map(n => n.textContent?.trim()).filter(Boolean)
-                );
-                const description = paragraphs.join('\n\n');
-
-                await Dataset.pushData({
-                    url,
-                    sku,
-                    title,
-                    category,
-                    price,
-                    images,
-                    sizes,
-                    colors,
-                    description
-                });
+                detailHandler({ page, request, log } as PlaywrightCrawlingContext);
             }
         },
     });
