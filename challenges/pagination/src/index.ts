@@ -39,7 +39,7 @@ async function main() {
                     return;
                 });
 
-                detailHandler({ page, request, log } as PlaywrightCrawlingContext);
+                await detailHandler({ page, request, log } as PlaywrightCrawlingContext);
             }
         },
     });

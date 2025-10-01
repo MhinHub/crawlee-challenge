@@ -31,7 +31,7 @@ export function createBaseCrawler(options: BaseCrawlerOptions) {
         run: async (startLabel?: string) => {
             const startRequests = options.startUrls.map(url => ({ url, label: startLabel }));
             await crawler.run(startRequests);
-            crawler.stop()
+            await crawler.autoscaledPool?.abort();
         },
     };
 }
