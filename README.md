@@ -103,7 +103,7 @@ These are the scraping challenges available on [scrapingcourse.com](https://www.
 
 - [x] **ECOMMERCE** - Ecommerce playground to scrape products and shop-related data
 - [x] **PAGINATION** - Huge list of items in a paginated system
-- [ ] **LOAD MORE** - Load more items by clicking the 'load more' button
+- [x] **LOAD MORE** - Load more items by clicking the 'load more' button
 - [ ] **INFINITE SCROLLING** - Infinite scrolling displays more items as you scroll down
 - [ ] **LOGIN** - Login with username/email and password to see items
 - [ ] **LOGIN & CSRF** - Login with CSRF-token to see protected items
