@@ -38,10 +38,8 @@ Each challenge demonstrates different techniques for extracting data from websit
 ```
 crawlee-challenge/
 ├── challenges/                 # Challenge implementations
-│   ├── ecommerce/             # E-commerce scraping challenge
+│   ├── <challenge>/         
 │   │       └── index.ts
-│   └── pagination/            # Pagination challenge
-│           └── index.ts
 ├── shared/                    # Reusable components
 │   ├── baseCrawler.ts         # Generic crawler base class
 │   └── detailProductHandler.ts # Product detail page handler
