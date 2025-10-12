@@ -1,20 +1,34 @@
 import { Dataset, PlaywrightCrawlingContext } from 'crawlee';
 
+async function getTextContent(page: PlaywrightCrawlingContext['page'], selector: string) {
+    const locator = page.locator(selector).first();
+    if (await locator.count() === 0) return null;
+    return (await locator.textContent())?.trim() ?? null;
+}
+
 export async function detailHandler({ page, request, log }: PlaywrightCrawlingContext) {
     log.info(`Scraping detail: ${request.url}`);
 
     try {
-        await page.waitForSelector('h1.product_title', { state: 'visible' }).catch(() => {
+        const titleLocator = page.locator('h1.product_title').first();
+        try {
+            await titleLocator.waitFor({ state: 'visible', timeout: 15000 });
+        } catch {
             log.warning(`No product title found on ${request.url}`);
             return;
-        });
+        }
 
-        const sku = await page.locator('span.sku').textContent();
-        const title = await page.locator('h1.product_title').textContent();
-        const category = await page.locator('.posted_in a').textContent();
+        const title = (await titleLocator.textContent())?.trim() ?? null;
+        const sku = await getTextContent(page, 'span.sku');
+        const category = await getTextContent(page, '.posted_in a');
+        const priceText = await getTextContent(page, 'p.price span.product-price bdi');
 
-        const priceText = await page.locator('p.price span.product-price bdi').textContent();
-        const price = Number(priceText?.replace(/[^0-9.]/g, ''));
+        if (!title || !priceText) {
+            log.warning(`Skipping product without required fields on ${request.url}`);
+            return;
+        }
+
+        const price = Number(priceText.replace(/[^0-9.]/g, ''));
 
         const images = await page.locator('.woocommerce-product-gallery__wrapper a').evaluateAll(imgs =>
             imgs.map(img => img.getAttribute('href')).filter(Boolean)
@@ -34,11 +48,13 @@ export async function detailHandler({ page, request, log }: PlaywrightCrawlingCo
         const description = paragraphs.join('\n\n');
 
         await Dataset.pushData({
+            type: 'detail',
             url: request.url,
-            sku,
-            title,
-            category,
+            name: title,
             price,
+            priceText,
+            sku,
+            category,
             images,
             sizes,
             colors,
