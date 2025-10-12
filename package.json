@@ -3,16 +3,17 @@
     "type": "module",
     "private": true,
     "scripts": {
-        "start:ecommerce": "bun run challenges/ecommerce/src/index.ts",
-        "start:pagination": "bun run challenges/pagination/src/index.ts",
+        "start:ecommerce": "bun run challenges/ecommerce/index.ts",
+        "start:pagination": "bun run challenges/pagination/index.ts",
+        "start:load-more": "bun run challenges/load-more/index.ts",
         "build": "tsc"
     },
     "dependencies": {
         "crawlee": "^3.15.1",
-        "playwright": "^1.55.1"
+        "playwright": "^1.56.0"
     },
     "devDependencies": {
-        "@types/node": "^24.6.0",
-        "typescript": "^5.9.2"
+        "@types/node": "^24.7.2",
+        "typescript": "^5.9.3"
     }
 }
