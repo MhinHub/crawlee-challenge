@@ -13,6 +13,14 @@ async function main() {
     router.addHandler("LOGIN", async ({ page, request, enqueueLinks, log }: PlaywrightCrawlingContext) => {
         log.info(`Logging in at: ${request.url}`);
 
+        // Note: Playwright automatically handles cookies and tokens
+
+        // Log CSRF token
+        // const csrfToken = await page.getAttribute('input[name="_token"]', 'value');
+        // if (csrfToken) {
+        //     log.info(`CSRF Token found: ${csrfToken.substring(0, 10)}...`);
+        // }
+
         await page.fill('#email', USER_EMAIL);
         await page.fill('#password', USER_PASSWORD);
 
@@ -33,7 +41,8 @@ async function main() {
 
     const { run } = createBaseCrawler({
         requestHandler: router,
-        startUrls: ['https://www.scrapingcourse.com/login'],
+        // startUrls: ['https://www.scrapingcourse.com/login'],
+        startUrls: ['https://www.scrapingcourse.com/login/csrf'],
         maxRequests: 500,
     });
 
