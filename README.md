@@ -105,7 +105,7 @@ These are the scraping challenges available on [scrapingcourse.com](https://www.
 - [x] **PAGINATION** - Huge list of items in a paginated system
 - [x] **LOAD MORE** - Load more items by clicking the 'load more' button
 - [x] **INFINITE SCROLLING** - Infinite scrolling displays more items as you scroll down
-- [ ] **LOGIN** - Login with username/email and password to see items
+- [x] **LOGIN** - Login with username/email and password to see items
 - [ ] **LOGIN & CSRF** - Login with CSRF-token to see protected items
 - [ ] **LOGIN & CLOUDFLARE** - Bypass Cloudflare protection and Login to see protected items
 - [ ] **LOGIN & CLOUDFLARE TURNSTILE** - Login and pass Cloudflare Turnstile to see protected items

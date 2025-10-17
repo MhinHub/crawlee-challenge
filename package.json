@@ -7,6 +7,7 @@
         "start:pagination": "bun run challenges/pagination/index.ts",
         "start:load-more": "bun run challenges/load-more/index.ts",
         "start:infinite-scrolling": "bun run challenges/infinite-scrolling/index.ts",
+        "start:login": "bun run challenges/login/index.ts",
         "build": "tsc"
     },
     "dependencies": {
