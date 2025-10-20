@@ -128,8 +128,8 @@ These are the scraping challenges available on [scrapingcourse.com](https://www.
 - [x] **LOGIN & CSRF** - Login with CSRF-token to see protected items
 - [ ] **LOGIN & CLOUDFLARE** - Bypass Cloudflare protection and Login to see protected items
 - [ ] **LOGIN & CLOUDFLARE TURNSTILE** - Login and pass Cloudflare Turnstile to see protected items
-- [ ] **JAVASCRIPT RENDERING** - Enable JavaScript to see items
-- [ ] **TABLE PARSING** - Extract structured product data from the HTML table
+- [x] **JAVASCRIPT RENDERING** - Enable JavaScript to see items
+- [x] **TABLE PARSING** - Extract structured product data from the HTML table
 - [ ] **CLOUDFLARE CHALLENGE** - Bypass the Cloudflare challenge
 - [ ] **ANTIBOT CHALLENGE** - Bypass the Antibot challenge
 
