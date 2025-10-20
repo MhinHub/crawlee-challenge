@@ -126,12 +126,12 @@ These are the scraping challenges available on [scrapingcourse.com](https://www.
 - [x] **INFINITE SCROLLING** - Infinite scrolling displays more items as you scroll down
 - [x] **LOGIN** - Login with username/email and password to see items
 - [x] **LOGIN & CSRF** - Login with CSRF-token to see protected items
-- [ ] **LOGIN & CLOUDFLARE** - Bypass Cloudflare protection and Login to see protected items
-- [ ] **LOGIN & CLOUDFLARE TURNSTILE** - Login and pass Cloudflare Turnstile to see protected items
+- [x] **LOGIN & CLOUDFLARE** - Bypass Cloudflare protection and Login to see protected items
+- [x] **LOGIN & CLOUDFLARE TURNSTILE** - Login and pass Cloudflare Turnstile to see protected items
 - [x] **JAVASCRIPT RENDERING** - Enable JavaScript to see items
 - [x] **TABLE PARSING** - Extract structured product data from the HTML table
-- [ ] **CLOUDFLARE CHALLENGE** - Bypass the Cloudflare challenge
-- [ ] **ANTIBOT CHALLENGE** - Bypass the Antibot challenge
+- [x] **CLOUDFLARE CHALLENGE** - Bypass the Cloudflare challenge
+- [x] **ANTIBOT CHALLENGE** - Bypass the Antibot challenge
 
 ## 🤝 Contributing
 
