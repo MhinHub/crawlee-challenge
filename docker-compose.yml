@@ -1,0 +1,9 @@
+services:
+  crawler:
+    build: .
+    volumes:
+      - ./storage:/app/storage
+    environment:
+      - CHALLENGE=start:ecommerce
+    entrypoint: ["bun"]
+    command: ["run", "${CHALLENGE}"]

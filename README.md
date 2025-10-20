@@ -36,7 +36,7 @@ Each challenge demonstrates different techniques for extracting data from websit
 ## 📁 Project Structure
 
 ```
-crawlee-challenge/
+crawlee-scrapingcoursechallenge/
 ├── challenges/                 # Challenge implementations
 │   ├── <challenge>/         
 │   │       └── index.ts
@@ -57,10 +57,10 @@ crawlee-challenge/
 2. **Installation**
    ```bash
    # Clone the repository
-   git clone https://github.com/MhinHub/crawlee-challenge
+   git clone https://github.com/MhinHub/crawlee-scrapingcoursechallenge
    
    # Navigate to project directory
-   cd crawlee-challenge
+   cd crawlee-scrapingcoursechallenge
    
    # Install dependencies
    bun install
@@ -70,6 +70,25 @@ crawlee-challenge/
 
 ```bash
 bun run start:<challenge>
+```
+
+### 🐳 Running with Docker
+
+```bash
+# Build image
+docker build -t crawlee-scrapingcourse .
+
+# Run default challenge (start:ecommerce)
+docker run --rm -v "$(pwd)/storage:/app/storage" crawlee-scrapingcourse run start:ecommerce
+
+# Run another challenge (example: start:login)
+docker run --rm -v "$(pwd)/storage:/app/storage" crawlee-scrapingcourse run start:login
+```
+
+Or use `docker-compose` to switch challenges via the `CHALLENGE` environment variable:
+
+```bash
+CHALLENGE=start:login docker compose up --build
 ```
 
 ## 🧩 Shared Components
