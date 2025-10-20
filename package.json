@@ -8,6 +8,7 @@
         "start:load-more": "bun run challenges/load-more/index.ts",
         "start:infinite-scrolling": "bun run challenges/infinite-scrolling/index.ts",
         "start:login": "bun run challenges/login/index.ts",
+        "start:login-cf": "bun run challenges/login-cf/index.ts",
         "start:js-rendering": "bun run challenges/js-rendering/index.ts",
         "start:table-parsing": "bun run challenges/table-parsing/index.ts",
         "start:cloudflare": "bun run challenges/cloudflare/index.ts",
