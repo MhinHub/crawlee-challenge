@@ -8,6 +8,7 @@
         "start:load-more": "bun run challenges/load-more/index.ts",
         "start:infinite-scrolling": "bun run challenges/infinite-scrolling/index.ts",
         "start:login": "bun run challenges/login/index.ts",
+        "start:js-rendering": "bun run challenges/js-rendering/index.ts",
         "build": "tsc"
     },
     "dependencies": {
