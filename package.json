@@ -10,11 +10,14 @@
         "start:login": "bun run challenges/login/index.ts",
         "start:js-rendering": "bun run challenges/js-rendering/index.ts",
         "start:table-parsing": "bun run challenges/table-parsing/index.ts",
+        "start:cloudflare": "bun run challenges/cloudflare/index.ts",
         "build": "tsc"
     },
     "dependencies": {
+        "camoufox": "^0.1.19",
         "crawlee": "^3.15.1",
-        "playwright": "^1.56.0"
+        "playwright": "^1.56.0",
+        "puppeteer-extra-plugin-stealth": "^2.11.2"
     },
     "devDependencies": {
         "@types/node": "^24.7.2",
