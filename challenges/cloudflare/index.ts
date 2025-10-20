@@ -3,6 +3,9 @@ import { launchOptions } from 'camoufox';
 import { firefox } from 'playwright';
 
 const crawler = new PlaywrightCrawler({
+    useSessionPool: true,
+    persistCookiesPerSession: true,
+
     postNavigationHooks: [
         async ({ handleCloudflareChallenge }) => {
             await handleCloudflareChallenge();
@@ -22,7 +25,7 @@ const crawler = new PlaywrightCrawler({
         }),
     },
 
-    async requestHandler({ request, page, enqueueLinks }) {
+    async requestHandler({ request, page, session }) {
         log.info(`Processing: ${request.url}`);
 
         const title = await page.title();
@@ -33,7 +36,9 @@ const crawler = new PlaywrightCrawler({
         if (await successHeader.isVisible()) {
             log.info('✅ Challenge bypassed successfully!');
         } else {
-            log.warning('❌ Failed to bypass the challenge.');
+            log.warning(`❌ Failed to bypass the challenge for ${request.url}.`);
+            session?.retire();
+            throw new Error('Failed to bypass Cloudflare');
         }
     },
 });
